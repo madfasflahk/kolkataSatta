@@ -1,0 +1,19 @@
+/* YearlyData.css */
+.no-data-found {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Light gray background */
+}
+
+.animated-text {
+    font-size: 3rem; /* Adjust font size as needed */
+    animation: color-change 2s infinite alternate; /* Infinite animation */
+}
+
+@keyframes color-change {
+    0% { color: red; } /* Start with red color */
+    50% { color: green; } /* Transition to green color */
+    100% { color: blue; } /* End with blue color */
+}
