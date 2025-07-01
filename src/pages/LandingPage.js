@@ -15,6 +15,7 @@ import Marquee from "../component/Marque";
 import DigitalClock from "../component/DegitalClock";
 import Loader from "../component/Loader/Loader";
 import HourglassLoader from "../component/Loader/Lodertwo";
+import TypingEffect, { ReactTypingEffectDemo } from "../component/TypingEffect";
 const LandingPage = () => {
   const navigate = useNavigate();
 
@@ -81,6 +82,11 @@ const LandingPage = () => {
     <>
       <Header />
       <Marquee />
+      <div className="position">
+
+      <ReactTypingEffectDemo/>
+      </div>
+      
       <div className="firstSection py-4 border border border-white rounded">
         <h3 className="text-center text-yellow">LEAK JODI DHAMAKA</h3>
         <h5 className="text-center text-yellow">
