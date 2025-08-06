@@ -43,14 +43,14 @@ const App = () => {
       </IconButton>
       <BrowserRouter>
         <Header />
-        <Container maxWidth="lg"> {/* Main content container */}
+        <div> {/* Main content container */}
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/:year" element={<YearlyData />} />
             <Route path="/userLogin" element={<LoginForm />} />
             <Route path="/adminDashBoard" element={<AdminDashBoard />} />
           </Routes>
-        </Container>
+        </div>
         <Footer /> {/* Render Footer inside BrowserRouter */}
       </BrowserRouter>
     </ThemeProvider>
