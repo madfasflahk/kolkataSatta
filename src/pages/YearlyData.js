@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './YearlyData.css'; // Import your CSS file for styling
+import { Container, Typography, Card, CardContent, CircularProgress, Box } from '@mui/material';
 import Header from '../component/Header';
-import HourglassLoader from '../component/Loader/Lodertwo';
-import ResultDisplay from '../component/ResultDisplay';
 import Marquee from '../component/Marque';
+import ResultDisplay from '../component/ResultDisplay';
 
 const YearlyData = () => {
     const { year } = useParams();
@@ -13,7 +12,7 @@ const YearlyData = () => {
     const [resultLoad, setResultLoad] = useState(false);
 
     const monthsArray = [
-        "January", "February", "March", "April", "May", "June", 
+        "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
 
@@ -22,11 +21,12 @@ const YearlyData = () => {
         try {
             const response = await axios.get(url);
             if (response.status === 200) {
-                setResultLoad(false);
                 setFullYearChart(response.data);
             }
         } catch (error) {
             console.log(error);
+        } finally {
+            setResultLoad(false);
         }
     };
 
@@ -36,9 +36,9 @@ const YearlyData = () => {
 
     if (resultLoad) {
         return (
-            <div style={{ height: "85vh" }} className='d-flex justify-content-center align-items-center'>
-                <HourglassLoader />
-            </div>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '85vh' }}>
+                <CircularProgress />
+            </Box>
         );
     }
 
@@ -46,20 +46,27 @@ const YearlyData = () => {
         <>
             <Header />
             <Marquee />
-            {(!fullYearChart ||fullYearChart.length===0) ? (
-                <div style={{ height: "85vh" }} className="no-data-found">
-                    <h2 className='text-center animated-text'>No data found for the year {year}</h2>
-                </div>
-            ) : (
-                fullYearChart.sort((a, b) => a.month - b.month).map((item, index) => (
-                    <div style={{minHeight:"80vh"}} className='mb-5' key={index}>
-                        <h3 className='text-center'>SATTA KING {monthsArray[item.month - 1].toUpperCase()} RECORD CHART {item.year}</h3>
-                        <ResultDisplay data={item} />
-                    </div>
-                ))
-            )}
+            <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+                {(!fullYearChart || fullYearChart.length === 0) ? (
+                    <Box sx={{ textAlign: 'center', minHeight: '85vh' }}>
+                        <Typography variant="h4">No data found for the year {year}</Typography>
+                    </Box>
+                ) : (
+                    fullYearChart.sort((a, b) => a.month - b.month).map((item, index) => (
+                        <Card key={index} sx={{ mb: 4 }}>
+                            <CardContent>
+                                <Typography variant="h5" component="div" align="center" gutterBottom>
+                                    SATTA KING {monthsArray[item.month - 1].toUpperCase()} RECORD CHART {item.year}
+                                </Typography>
+                                <ResultDisplay data={item} />
+                            </CardContent>
+                        </Card>
+                    ))
+                )}
+            </Container>
         </>
     );
 };
 
 export default YearlyData;
+

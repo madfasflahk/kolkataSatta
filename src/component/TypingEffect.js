@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactTypingEffect from 'react-typing-effect';
 
-export const ReactTypingEffectDemo = () => {
+const TypingEffect = () => {
   return (
     <>
      
 
-      <ReactTypingEffect
+      <ReactTypingEffect className='orathem'
         text={["Site will shutdown 6/07/2025 ➜ 7980689304"]}
         displayTextRenderer={(text, i) => {
           return (
@@ -27,3 +27,5 @@ export const ReactTypingEffectDemo = () => {
     </>
   );
 };
+
+export default TypingEffect;

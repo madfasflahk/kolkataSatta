@@ -1,27 +1,38 @@
-import React from 'react'
+import React from 'react';
 import { useGlobalSkills } from '../context/skillContext';
+import { Card, CardContent, Typography, Box } from '@mui/material';
 
 const NoticeBoard = () => {
-    const {notice}=useGlobalSkills()
+    const { notice } = useGlobalSkills();
+
     return (
-        <>
-            {notice && notice.map((e, i) => {
-                return (
-                    <div style={{ border: "4px solid var(--myTheme-color)" }} className='mx-1  py-4 px-5 rounded-2 m-auto my-2' key={i}>
-                        <h5 className='text-center'> {e.title} </h5>
-                        <p className='text-center fs-6'>
+        <Box sx={{ my: 4 }}>
+            {notice && notice.map((e, i) => (
+                <Card key={i} sx={{ mb: 2, border: `2px solid` , borderColor: 'primary.main'}}>
+                    <CardContent sx={{ textAlign: 'center' }}>
+                        <Typography variant="h5" component="div" gutterBottom>
+                            {e.title}
+                        </Typography>
+                        <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
                             {e.notice}
-                        </p>
-                        <h5 style={{ color: "var(--myTheme-color)" }} className='text-center'> {e.designation} </h5>
-                        <h5 style={{ color: "red" }} className='text-center fw-bold'> {e.name} </h5>
-                        <h5 style={{ color: "var(--myTheme-color)" }} className='text-center'> {e.number} </h5>
-                        <h5 style={{ color: "var(--myTheme-color)" }} className='text-center'> {e.note} </h5>
-                        
-                    </div>
-                );
-            })}
-        </>
+                        </Typography>
+                        <Typography variant="h6" color="primary.main">
+                            {e.designation}
+                        </Typography>
+                        <Typography variant="h6" sx={{ color: 'red', fontWeight: 'bold' }}>
+                            {e.name}
+                        </Typography>
+                        <Typography variant="h6" color="primary.main">
+                            {e.number}
+                        </Typography>
+                        <Typography variant="h6" color="primary.main">
+                            {e.note}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            ))}
+        </Box>
     );
 }
 
-export default NoticeBoard
+export default NoticeBoard;

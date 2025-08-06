@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './YearMonthSelector.css';
+import { FormControl, InputLabel, Select, MenuItem, Box } from '@mui/material';
 
 const YearMonthSelector = ({ onDateChange }) => {
     const [year, setYear] = useState(new Date().getFullYear());
@@ -24,9 +24,9 @@ const YearMonthSelector = ({ onDateChange }) => {
             years.push(i);
         }
         return years.map((year) => (
-            <option key={year} value={year}>
+            <MenuItem key={year} value={year}>
                 {year}
-            </option>
+            </MenuItem>
         ));
     };
 
@@ -36,21 +36,27 @@ const YearMonthSelector = ({ onDateChange }) => {
             'July', 'August', 'September', 'October', 'November', 'December'
         ];
         return months.map((month, index) => (
-            <option key={index + 1} value={index + 1}>
+            <MenuItem key={index + 1} value={index + 1}>
                 {month}
-            </option>
+            </MenuItem>
         ));
     };
 
     return (
-        <div className="year-month-selector">
-            <select style={{borderRadius:'20px',background:"#ededb4"}}  value={year} onChange={handleYearChange}>
-                {renderYearOptions()}
-            </select>
-            <select style={{borderRadius:'20px',background:"#ededb4"}} value={month} onChange={handleMonthChange}>
-                {renderMonthOptions()}
-            </select>
-        </div>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+            <FormControl sx={{ minWidth: 120 }}>
+                <InputLabel>Year</InputLabel>
+                <Select value={year} onChange={handleYearChange}>
+                    {renderYearOptions()}
+                </Select>
+            </FormControl>
+            <FormControl sx={{ minWidth: 120 }}>
+                <InputLabel>Month</InputLabel>
+                <Select value={month} onChange={handleMonthChange}>
+                    {renderMonthOptions()}
+                </Select>
+            </FormControl>
+        </Box>
     );
 };
 

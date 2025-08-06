@@ -1,39 +1,55 @@
-import React from 'react'
+import React from 'react';
+import { Box, Container, Typography, Link } from '@mui/material';
 
 const Footer = () => {
   return (
-    <>
-    <div className='bg-dark text-white py-2 px-5'>
-        <h5 className='text-center'>ABOUT DISCLAMER PRIVACY POLICY SITEMAP</h5>
+    <Box
+      component="footer"
+      sx={{
+        backgroundColor: 'primary.main',
+        color: 'white',
+        py: 3,
+        mt: 4,
+      }}
+      
 
-        <div className='d-flex col-sm-12 justify-content-center my-2'>
-<div className='col-sm-12'>
+    >
+      <Container maxWidth="lg">
+        <Typography variant="h6" align="center" gutterBottom>
+          Kolkata Satta
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          component="p"
+        >
+          Your trusted source for Satta King results and charts.
+        </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+          <Link href="#" color="inherit" sx={{ mx: 1 }}>
+            About
+          </Link>
+          <Link href="#" color="inherit" sx={{ mx: 1 }}>
+            Disclaimer
+          </Link>
+          <Link href="#" color="inherit" sx={{ mx: 1 }}>
+            Privacy Policy
+          </Link>
+          <Link href="#" color="inherit" sx={{ mx: 1 }}>
+            Sitemap
+          </Link>
+        </Box>
+        <Typography variant="body2" align="center" sx={{ mt: 2 }}>
+          {'Copyright © '}
+          <Link color="inherit" href="https://kolkatasattapro.in/">
+            Kolkata Satta
+          </Link>{' '}
+          {new Date().getFullYear()}
+          {'.'}
+        </Typography>
+      </Container>
+    </Box>
+  );
+};
 
-            <button className='border-0 bg-transparent border-end border-white text-white px-2' > Satta King  </button>
-            <button className='border-0 bg-transparent border-end border-white text-white px-2' > Satta King  </button>
-            <button className='border-0 bg-transparent border-end border-white text-white px-2' > Satta King  </button>
-            <button className='border-0 bg-transparent border-end border-white text-white px-2' > Satta King  </button>
-            <button className='border-0 bg-transparent border-end border-white text-white px-2' > Satta King  </button>
-
-            <button className='border-0 bg-transparent border-end border-white text-white px-2' > Satta King  </button>
-            <button className='border-0 bg-transparent border-end border-white text-white px-2' > Satta King 2024  </button>
-            <button className='border-0 bg-transparent border-end border-white text-white px-2' > Satta King 2023  </button>
-            <button className='border-0 bg-transparent border-end border-white text-white px-2' > Diswar Result  </button>
-            <button className='border-0 bg-transparent border-end border-white text-white px-2' > Satta King Leak  </button>
-            <button className='border-0 bg-transparent border-end border-white text-white px-2' > Satta King record Chart  </button>
-
-</div>
-
-        </div>
-
-    </div>
-    <div className='text-center py-2 bg-dark text-white border-top border-white' >
-    Copyright © 2018-2023 - Satta King Fixed N
-
-
-    </div>
-    </>
-  )
-}
-
-export default Footer
+export default Footer;
