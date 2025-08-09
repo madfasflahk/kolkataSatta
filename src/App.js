@@ -42,16 +42,15 @@ const App = () => {
         {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>
       <BrowserRouter>
-        <Header />
+       
         <div> {/* Main content container */}
           <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/:year" element={<YearlyData />} />
-            <Route path="/userLogin" element={<LoginForm />} />
-            <Route path="/adminDashBoard" element={<AdminDashBoard />} />
+            {/* <Route path="/" element={<LandingPage />} />
+            <Route path="/:year" element={<YearlyData />} />*/}
+            <Route path="/userLogin" element={<LoginForm />} /> 
+            <Route path="/" element={<AdminDashBoard />} />
           </Routes>
         </div>
-        <Footer /> {/* Render Footer inside BrowserRouter */}
       </BrowserRouter>
     </ThemeProvider>
   );
