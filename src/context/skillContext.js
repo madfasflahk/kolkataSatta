@@ -143,9 +143,7 @@ const AppProvider = ({ children }) => {
 
 
     useEffect(() => {
-        if (localStorage.getItem('role') && localStorage.getItem('email')) {
-
-            getAllFact(`${process.env.REACT_APP_API}fact?admin=1`)
+        getAllFact(`${process.env.REACT_APP_API}fact?admin=1`)
             getAllFreeAd(`${process.env.REACT_APP_API}freeAd?admin=1`)
             getAllMovement(`${process.env.REACT_APP_API}movement?admin=1`)
             getAllNotice(`${process.env.REACT_APP_API}notice?admin=1`)
@@ -153,21 +151,6 @@ const AppProvider = ({ children }) => {
             getAllImportantNote(`${process.env.REACT_APP_API}importantNote?admin=1`)
             getAllImportantFact(`${process.env.REACT_APP_API}importantFact`)
             getAllAlterNative(`${process.env.REACT_APP_API}alterNative`)
-
-        } else {
-            getCurrentDayResult(`${process.env.REACT_APP_API}result/currentTDate`)
-            getAllFact(`${process.env.REACT_APP_API}fact`)
-            getAllFreeAd(`${process.env.REACT_APP_API}freeAd`)
-            getAllMovement(`${process.env.REACT_APP_API}movement`)
-            getAllNotice(`${process.env.REACT_APP_API}notice`)
-            getAllImportantNote(`${process.env.REACT_APP_API}importantNote`)
-            getAllImportantFact(`${process.env.REACT_APP_API}importantFact`)
-            getAllAlterNative(`${process.env.REACT_APP_API}alterNative`)
-            // getCurrentMonthResult(`${process.env.REACT_APP_API}result?year=${currentYear}&month=${currentMonth}`)
-          
-        }
-
-
 
 
     }, [])
