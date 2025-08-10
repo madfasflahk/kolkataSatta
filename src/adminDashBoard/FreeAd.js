@@ -73,7 +73,7 @@ const FreeAd = () => {
 
   return (
 
-    <> {post && <div style={{ background: "rgba(0,0,0,0.6)" }} className="position-fixed start-0  w-100 h-100 top-0 d-flex justify-content-center align-items-center py-3 px-5 rounded">
+    <> {post && <div style={{ background: "rgba(0,0,0,0.6)",zIndex:999 }} className="position-fixed start-0  w-100 h-100 top-0 d-flex justify-content-center align-items-center py-3 px-5 rounded">
       <form onSubmit={handleSubmit} className="col-md-6 p-5 bg-body position-relative rounded">
         <button style={{ right: "3px", top: "3px", border: "1px solid var(--myTheme-color)", color: "var(--myTheme-color)" }} className="position-absolute   px-2   bg- rounded-pill " onClick={() => setPost(false)} > X </button>
         <div className="form-group">
