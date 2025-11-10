@@ -21,7 +21,9 @@ const Result = () => {
         gali: "",
         delhiBazar: "",
         shreeGanesh: "",
-
+        luckpoti: "",
+        sreeRam: "",
+        dlb: "",
 
 
     };
@@ -210,6 +212,7 @@ const Result = () => {
 
                             />
                         </div>
+                        
                         <div className="form-group col-12 d-flex rounded justify-content-between" style={{ border: "1px solid blue" }}  >
                             <label htmlFor="faridabad" style={{ paddingLeft: "3px", width: "140px" }} >Faridabad</label>
                             <input
@@ -236,6 +239,7 @@ const Result = () => {
 
                             />
                         </div>
+                        
                         <div className="form-group col-12 d-flex rounded justify-content-between" style={{ border: "1px solid blue" }}  >
                             <label htmlFor="kolkataKing" style={{ paddingLeft: "3px", width: "140px" }} >kolkata King</label>
                             <input
@@ -311,15 +315,14 @@ const Result = () => {
                                 kolkataKing: parseInt(formDataDirect.kolkataKing),
                                 gali: parseInt(formDataDirect.gali),
                                 delhiBazar: parseInt(formDataDirect.delhiBazar),
-                                shreeGanesh: parseInt(formDataDirect.shreeGanesh)
+                                shreeGanesh: parseInt(formDataDirect.shreeGanesh),
+                                luckpoti: parseInt(formDataDirect.luckpoti),
+                                sreeRam: parseInt(formDataDirect.sreeRam),
+                                dlb: parseInt(formDataDirect.dlb),
                             }]
                             const data = {
                                 year, month, resultList
                             }
-
-                            console.log(formDataDirect);
-
-
                             try {
                                 const response = await axios.post(`${process.env.REACT_APP_API}result`,
                                     data);
