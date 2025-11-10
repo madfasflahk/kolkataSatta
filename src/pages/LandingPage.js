@@ -22,7 +22,7 @@ import { monthNames } from '../staticData/MonthArray';
 import Header from '../component/Header';
 import Marquee from '../component/Marque';
 import DigitalClock from '../component/DegitalClock';
-import HourglassLoader from '../component/Loader/Lodertwo';
+import HourglassLoader from '../component/Loader/Loadertwo';
 import ResultDisplay from '../component/ResultDisplay';
 import YearMonthSelector from '../component/YearMonthSelector';
 import NoticeBoard from '../component/NoticeBoard';
