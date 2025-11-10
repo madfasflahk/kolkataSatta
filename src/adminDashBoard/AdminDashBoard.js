@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
 import {
   Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
   Card,
   CardContent,
   IconButton,
+  Drawer,
   AppBar,
   Toolbar,
   Typography,
-  Grid,
-  Paper
+  useMediaQuery,
+  useTheme
 } from '@mui/material';
-import {
-  AddCircleOutline, 
-  NotificationsActive, 
-  Announcement, 
-  TrackChanges, 
-  Note, 
-  Verified, 
-  CompareArrows, 
-  CheckCircle
-} from '@mui/icons-material';
+import MenuIcon from '@mui/icons-material/Menu';
 import FreeAd from './FreeAd';
 import Notice from './Notice';
 import Fact from './Fact';
@@ -31,6 +27,18 @@ import AlterNative from './AlterNative';
 
 const AdminDashBoard = () => {
   const [option, setOption] = useState('freeAd');
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = '/';
+  };
 
   const renderComponent = () => {
     switch (option) {
@@ -56,60 +64,83 @@ const AdminDashBoard = () => {
   };
 
   const menuItems = [
-    { key: 'freeAd', label: 'Free Ad', icon: <AddCircleOutline /> },
-    { key: 'Notice', label: 'Notice', icon: <NotificationsActive /> },
-    { key: 'fact', label: 'Advertise', icon: <Announcement /> },
-    { key: 'movement', label: 'Movement', icon: <TrackChanges /> },
-    { key: 'importantNote', label: 'Important Note', icon: <Note /> },
-    { key: 'importantFact', label: 'Important Fact', icon: <Verified /> },
-    { key: 'alterNative', label: 'Alternative SattaKing', icon: <CompareArrows /> },
-    { key: 'result', label: 'Result', icon: <CheckCircle /> },
+    { key: 'freeAd', label: 'Free Ad' },
+    { key: 'Notice', label: 'Notice' },
+    { key: 'fact', label: 'Advertise' },
+    { key: 'movement', label: 'Movement' },
+    { key: 'importantNote', label: 'Important Note' },
+    { key: 'importantFact', label: 'Important Fact' },
+    { key: 'alterNative', label: 'Alternative SattaKing' },
+    { key: 'result', label: 'Result' },
   ];
+
+  const drawerContent = (
+    <Box sx={{ width: 240 }}>
+      <List>
+        {menuItems.map((item) => (
+          <ListItem key={item.key} disablePadding>
+            <ListItemButton
+              selected={option === item.key}
+              onClick={() => {
+                setOption(item.key);
+                if (isMobile) setMobileOpen(false);
+              }}
+            >
+              <ListItemText primary={item.label} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleLogout}>
+            <ListItemText primary="Logout" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Box>
+  );
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <AppBar position="sticky">
+      {/* Top Header */}
+      <AppBar position="fixed">
         <Toolbar>
+          <IconButton
+              color="inherit"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             Admin Dashboard
           </Typography>
         </Toolbar>
       </AppBar>
 
+      {/* Drawer for mobile */}
+      <Drawer
+        anchor="left"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{ keepMounted: true }}
+      >
+        {drawerContent}
+      </Drawer>
+
+      {/* Drawer for desktop (top bar menu replaced, so no permanent drawer) */}
+
+      {/* Main Content */}
       <Box
         component="main"
         sx={{
           flexGrow: 1,
           p: 3,
-          mt: 2,
+          mt: '64px',
+          width: '100%',
         }}
       >
-        <Grid container spacing={3}>
-          {menuItems.map((item) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={item.key}>
-              <Paper 
-                elevation={3} 
-                sx={{
-                  p: 2, 
-                  textAlign: 'center', 
-                  cursor: 'pointer',
-                  backgroundColor: option === item.key ? 'primary.main' : 'background.paper',
-                  color: option === item.key ? 'white' : 'inherit',
-                  '&:hover': {
-                    backgroundColor: 'primary.light',
-                    color: 'white',
-                  }
-                }}
-                onClick={() => setOption(item.key)}
-              >
-                {item.icon}
-                <Typography>{item.label}</Typography>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
-
-        <Card sx={{ mt: 3 }}>
+        <Card>
           <CardContent>{renderComponent()}</CardContent>
         </Card>
       </Box>

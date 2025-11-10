@@ -121,7 +121,7 @@ const LandingPage = () => {
       backgroundColor: theme.palette.background.paper
     })
   };
-  
+
   return (
     <>
      
