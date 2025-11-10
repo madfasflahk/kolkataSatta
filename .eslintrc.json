@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "no-unused-vars": "off",
+    "no-unreachable": "off",
+    "jsx-a11y/no-distracting-elements": "off"
+  }
+}
